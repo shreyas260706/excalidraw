@@ -101,6 +101,8 @@ export const actionDeselect = register({
           selectionElement: null,
           showHyperlinkPopup: false,
           suggestedBinding: null,
+          newElement: null,
+          multiElement: null,
         },
         captureUpdate: CaptureUpdateAction.IMMEDIATELY,
       };
@@ -118,6 +120,8 @@ export const actionDeselect = register({
         selectionElement: null,
         showHyperlinkPopup: false,
         suggestedBinding: null,
+        newElement: null,
+        multiElement: null,
       },
       captureUpdate: CaptureUpdateAction.IMMEDIATELY,
     };
@@ -131,8 +135,14 @@ export const actionDeselect = register({
       return false;
     }
 
+    if (appState.newElement) {
+      return (
+        appState.multiElement === null &&
+        !appState.selectedLinearElement?.isEditing
+      );
+    }
+
     return (
-      !appState.newElement &&
       appState.multiElement === null &&
       !appState.selectedLinearElement?.isEditing &&
       (appState.activeEmbeddable !== null ||
