@@ -9458,6 +9458,8 @@ class App extends React.Component<AppProps, AppState> {
       if (this.maybeHandleResize(pointerDownState, event)) {
         return;
       }
+
+      this.onKeyDown(event);
       this.maybeDragNewGenericElement(pointerDownState, event);
     });
   }
